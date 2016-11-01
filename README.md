@@ -41,22 +41,25 @@ o user is not blacklisted (see 'Registration' service)
 ###Exclusion Service
 The exclusion service is given as an interface and does not need to be implemented. For use in the Registration Service it can be stubbed, mocked or faked.
 Exclusion Service
-/**
-* Service to offer validation of a user against a 'blacklist'. Blacklisted
-users fail the validation.
- * @author gamesys
- *
- */
-public interface ExclusionService {
+```
         /**
-* Validates a user against a black list using his date of birth and social security number as identifier.
-*
-* @param dob the user's date of birth in ISO 8601 format
-* @param ssn the user's social security number (United States)
-* @return true if the user could be validated and is not blacklisted,
-false if the user is blacklisted and therefore failed validation */
-boolean validate(String dob, String ssn);
-}
+        * Service to offer validation of a user against a 'blacklist'. Blacklisted
+        users fail the validation.
+         * @author gamesys
+         *
+         */
+        public interface ExclusionService {
+                /**
+        * Validates a user against a black list using his date of birth and social security number as identifier.
+        *
+        * @param dob the user's date of birth in ISO 8601 format
+        * @param ssn the user's social security number (United States)
+        * @return true if the user could be validated and is not blacklisted,
+        false if the user is blacklisted and therefore failed validation */
+        boolean validate(String dob, String ssn);
+        }
+```
+
 ###Execution environment
  Mac OS X
  Java 8 (Java as language)
