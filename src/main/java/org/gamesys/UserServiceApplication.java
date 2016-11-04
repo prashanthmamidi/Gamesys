@@ -4,18 +4,18 @@ import io.dropwizard.Application;
 import io.dropwizard.Configuration;
 import io.dropwizard.setup.Environment;
 import org.gamesys.exception.ConstraintViolationExceptionMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.gamesys.exception.UserAlreadyExistsExceptionMapper;
+import org.gamesys.exception.UserBlackListedExceptionMapper;
 
 public class UserServiceApplication extends Application<Configuration> {
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceApplication.class);
     public static void main(String[] args) throws Exception {
         new UserServiceApplication().run(args);
     }
 
     public void run(Configuration configuration, Environment environment) throws Exception {
-        LOGGER.info("Method App#run() called");
-        environment.jersey().register(new UserResource());
+        environment.jersey().register(new UserResource(new DummyExclusionServiceImpl()));
         environment.jersey().register(new ConstraintViolationExceptionMapper());
+        environment.jersey().register(new UserAlreadyExistsExceptionMapper());
+        environment.jersey().register(new UserBlackListedExceptionMapper());
     }
 }

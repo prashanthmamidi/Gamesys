@@ -1,4 +1,4 @@
-package org.gamesys;
+package org.gamesys.exception;
 
 public class UserAlreadyExistsException extends RuntimeException {
     public UserAlreadyExistsException(String message) {
