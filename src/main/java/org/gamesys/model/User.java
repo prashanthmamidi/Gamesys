@@ -1,4 +1,4 @@
-package org.gamesys;
+package org.gamesys.model;
 
 import java.util.UUID;
 

@@ -1,6 +1,9 @@
 package org.gamesys;
 
 import org.gamesys.exception.UserBlackListedException;
+import org.gamesys.model.User;
+import org.gamesys.model.UserDTO;
+import org.gamesys.service.ExclusionService;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -17,7 +20,7 @@ import java.util.Date;
 import java.util.UUID;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
-import static org.gamesys.ValidationService.validateExistingUser;
+import static org.gamesys.service.ValidationService.validateExistingUser;
 
 @Singleton
 @Path("/user")

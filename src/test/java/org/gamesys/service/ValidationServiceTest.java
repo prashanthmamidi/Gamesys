@@ -1,11 +1,11 @@
-package org.gamesys;
+package org.gamesys.service;
 
 import org.gamesys.exception.UserAlreadyExistsException;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import static org.gamesys.ValidationService.validateExistingUser;
+import static org.gamesys.service.ValidationService.validateExistingUser;
 
 public class ValidationServiceTest {
     @Rule

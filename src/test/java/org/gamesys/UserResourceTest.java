@@ -5,6 +5,9 @@ import org.gamesys.exception.ConstraintViolationExceptionMapper;
 import org.gamesys.exception.ErrorResponse;
 import org.gamesys.exception.UserAlreadyExistsExceptionMapper;
 import org.gamesys.exception.UserBlackListedExceptionMapper;
+import org.gamesys.model.User;
+import org.gamesys.model.UserDTO;
+import org.gamesys.service.ExclusionService;
 import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Test;
@@ -82,7 +85,7 @@ public class UserResourceTest {
 
         Response response = userRegistration(userDTO);
 
-        assertErrorResponse(response);
+        assertErrorResponse(response, "userName");
     }
 
     @DataPoints(value = "invalidPassword")
@@ -97,7 +100,7 @@ public class UserResourceTest {
 
         Response response = userRegistration(userDTO);
 
-        assertErrorResponse(response);
+        assertErrorResponse(response, "password");
     }
 
     @DataPoints(value = "invalidSSN")
@@ -112,7 +115,7 @@ public class UserResourceTest {
 
         Response response = userRegistration(userDTO);
 
-        assertErrorResponse(response);
+        assertErrorResponse(response, "ssn");
     }
 
     @DataPoints(value = "invalidDate")
@@ -127,7 +130,7 @@ public class UserResourceTest {
 
         Response response = userRegistration(userDTO);
 
-        assertErrorResponse(response);
+        assertErrorResponse(response, "dob");
     }
 
     @Test
@@ -140,7 +143,7 @@ public class UserResourceTest {
 
         assertThat(response.getStatus(), is(400));
         ErrorResponse errorResponse = response.readEntity(ErrorResponse.class);
-        assertThat(errorResponse.getDescription(), is("User Already Exists Exception"));
+        assertThat(errorResponse.getDescription(), is("User Already Exists"));
     }
 
     @Test
@@ -163,10 +166,10 @@ public class UserResourceTest {
                 .post(Entity.entity(userDTO, APPLICATION_JSON));
     }
 
-    private void assertErrorResponse(Response response) {
+    private void assertErrorResponse(Response response, final String fieldName) {
         assertThat(response.getStatus(), is(400));
         ErrorResponse errorResponse = response.readEntity(ErrorResponse.class);
-        assertThat(errorResponse.getDescription(), is("Invalid Request"));
+        assertThat(errorResponse.getDescription(), is(fieldName + " is invalid"));
     }
 
     private String dateToString() {

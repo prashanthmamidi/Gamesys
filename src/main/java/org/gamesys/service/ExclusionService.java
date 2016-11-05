@@ -1,4 +1,4 @@
-package org.gamesys;
+package org.gamesys.service;
 
 /**
  * Service to offer validation of a user against a 'blacklist'. Blacklisted

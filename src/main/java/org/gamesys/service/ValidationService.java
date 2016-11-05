@@ -1,10 +1,11 @@
-package org.gamesys;
+package org.gamesys.service;
 
 import com.google.common.collect.ImmutableMap;
+import org.gamesys.model.User;
 import org.gamesys.exception.UserAlreadyExistsException;
 
-import static org.gamesys.UserBuilder.aUser;
-import static org.gamesys.UserBuilder.userBuilder;
+import static org.gamesys.model.UserBuilder.aUser;
+import static org.gamesys.model.UserBuilder.userBuilder;
 
 public class ValidationService {
 
